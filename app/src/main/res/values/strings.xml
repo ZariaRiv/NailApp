@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CameraXinJava2</string>
+    <string name="hand_position">hand_position</string>
+    <string name="hand_alignment_photo">Hand alignment/photo</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="gallery">Gallery</string>
+</resources>

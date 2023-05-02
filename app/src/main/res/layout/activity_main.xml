@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Switch
+        android:id="@+id/handSwitch"
+        android:layout_width="209dp"
+        android:layout_height="57dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:text="@string/hand_alignment_photo"
+        android:textColor="@color/black"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+        tools:layout_editor_absoluteY="14dp"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/onTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dilation"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dilation"
+        tools:ignore="ExtraText"
+
+        android:contentDescription="@string/hand_position" />
+
+    <!--<ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        android:layout_marginEnd="4dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>-->
+
+
+    <view
+        android:id="@+id/previewView"
+        class="androidx.camera.view.PreviewView"
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        android:layout_marginEnd="4dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/take_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="479dp"
+        android:text="@string/take_photo"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,VisualLintButtonSize"
+        tools:layout_editor_absoluteX="0dp"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/GALLERY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="527dp"
+        android:text="@string/gallery"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,VisualLintButtonSize"
+        tools:layout_editor_absoluteX="0dp"
+        tools:visibility="visible" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
