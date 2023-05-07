@@ -4,7 +4,7 @@ import cv2
 
 def run_model(image_path):
     # load the trained model
-    model = tf.keras.models.load_model('model.h5')
+    model = tf.keras.models.load_model('C:/Users/Kasia/Documents/GitHub/NailApp/app/src/main/python/shitty_model.h5')
 
     # load the input image
     img = cv2.imread(image_path)
