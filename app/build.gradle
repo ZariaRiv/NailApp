@@ -31,11 +31,19 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
         python {
-            version "3.11"
+            version "3.8"
         }
         python {
-            buildPython "C:/Users/Kasia/AppData/Local/Programs/Python/Python311/python.exe"
-            buildPython "C:/Windows/py.exe", "-3.11"
+            buildPython "C:/Users/Kasia/AppData/Local/Programs/Python/Python311/python.exe"//?
+            buildPython "C:/Windows/py.exe", "-3.8"
+            pip {
+                // A requirement specifier, with or without a version number:
+                //install "numpy"
+                //install "opencv-python"
+                //options "--extra-index-url", "https://pypi.org/project/tensorflow"
+                //install "tensorflow"
+                //https://pypi.org/project/tensorflow/
+            }
         }
     }
 
@@ -73,5 +81,8 @@ dependencies {
 
     // other dependencies
     //implementation 'com.chaquo.python:chaquopy:14.0.2'
+
+    //implementation 'com.chaquo.python:tensorflow:2.0'
+    //implementation 'com.chaquo.python:tensorflow-estimator:2.5.0.1'
 
 }

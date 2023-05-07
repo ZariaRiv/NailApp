@@ -40,14 +40,14 @@
 
         android:contentDescription="@string/hand_position" />
 
-    <!--<ImageView
+    <ImageView
         android:id="@+id/image_view"
         android:layout_width="match_parent"
         android:layout_height="465dp"
         android:layout_marginEnd="4dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>-->
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <view

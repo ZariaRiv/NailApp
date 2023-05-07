@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -28,12 +30,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
-
-//import com.chaquo.python.Python;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ImageAnalysis.Analyzer  {
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     PreviewView previewView;
 
     ImageView onTop;
+
+    ImageView image_view;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch handSwitch;
     Button GALLERY, take_picture;
@@ -130,22 +134,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             cursor.close();
 
-            //if (imagePath != null) {
-                // display the picture on the screen
-                //ImageView imageView = findViewById(R.id.image_view);
-                //Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-                //imageView.setImageBitmap(bitmap);
+            if (imagePath != null) {
+                 //display the picture on the screen
+                ImageView imageView = findViewById(R.id.image_view);
+                Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+                imageView.setImageBitmap(bitmap);
 
                 // call a Python script that takes the picture as an input and outputs a picture
-                //Python py = Python.getInstance();
+                Python py = Python.getInstance();
+                PyObject pymodule = py.getModule("script.py");
                 //PyObject pymodule = py.getModule("script");
-                //PyObject result = pymodule.callAttr("run_model", imagePath);
+                PyObject result = pymodule.callAttr("run_model", imagePath);
 
                 // display the picture that the Python script outputs
-                //byte[] byteArray = result.toJava(byte[].class);
-                //Bitmap outputBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                //imageView.setImageBitmap(outputBitmap);
-            //}
+                byte[] byteArray = result.toJava(byte[].class);
+                Bitmap outputBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                imageView.setImageBitmap(outputBitmap);
+            }
         }
     }
 
@@ -166,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         Toast.makeText(MainActivity.this, "Photo saved "+ MediaStore.Images.Media.EXTERNAL_CONTENT_URI, Toast.LENGTH_SHORT).show();
-                        Log.d("captring","Photo saved");
+                        Log.d("capturing","Photo saved");
                     }
                     @Override
                     public void onError(@NonNull ImageCaptureException exception)
@@ -217,8 +222,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void analyze(@NonNull ImageProxy image) {
-        //Image provessing here for the current frame
-        Log.d("mainactivity_analyze", "analyze: got the frame at: "+ image.getImageInfo().getTimestamp());
+        //Image processing here for the current frame
+        Log.d("main activity_analyze", "analyze: got the frame at: "+ image.getImageInfo().getTimestamp());
         image.close();
     }
 
