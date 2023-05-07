@@ -1,10 +1,20 @@
 import tensorflow as tf
 import numpy as np
 import cv2
+import os
+
+
+def see_model(image_path):
+    path= os.path.abspath('shitty_model.h5')
+    return path
 
 def run_model(image_path):
+# get the absolute path to the current directory
+    cwd = os.getcwd()
+
     # load the trained model
-    model = tf.keras.models.load_model('C:/Users/Kasia/Documents/GitHub/NailApp/app/src/main/python/shitty_model.h5')
+    model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chat_model.h5')
+    model = tf.keras.models.load_model(model_path)
 
     # load the input image
     img = cv2.imread(image_path)

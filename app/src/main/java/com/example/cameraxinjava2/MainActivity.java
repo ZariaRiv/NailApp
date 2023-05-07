@@ -152,8 +152,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //PyObject tf = py.getModule("tensorflow");
                 PyObject pymodule = py.getModule("script");
                 //PyObject pymodule = py.getModule("script");
+                //PyObject result0 = pymodule.callAttr("see_model", imagePath);
+                //Toast.makeText(MainActivity.this, "Photo saved "+ result0, Toast.LENGTH_SHORT).show();
+                //Log.d("capturing", String.valueOf(result0));
                 PyObject result = pymodule.callAttr("run_model", imagePath);
-
                 // display the picture that the Python script outputs
                 byte[] byteArray = result.toJava(byte[].class);
                 Bitmap outputBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
