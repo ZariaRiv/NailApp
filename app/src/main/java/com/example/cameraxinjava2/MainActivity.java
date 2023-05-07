@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
@@ -140,9 +141,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
                 imageView.setImageBitmap(bitmap);
 
+                // Initialize Chaquopy
+                if (! Python.isStarted()) {
+                    Python.start(new AndroidPlatform(this));
+                }
                 // call a Python script that takes the picture as an input and outputs a picture
                 Python py = Python.getInstance();
-                PyObject pymodule = py.getModule("script.py");
+                //PyObject np = py.getModule("numpy");
+                //PyObject cv2 = py.getModule("cv2");
+                //PyObject tf = py.getModule("tensorflow");
+                PyObject pymodule = py.getModule("script");
                 //PyObject pymodule = py.getModule("script");
                 PyObject result = pymodule.callAttr("run_model", imagePath);
 
