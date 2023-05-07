@@ -1,25 +1,17 @@
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url 'https://chaquo.com/maven/'
-        }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath "com.chaquo.python:gradle:10.0.1"
-
-        //classpath 'com.chaquo.python:gradle:9.0.0' // Chaquopy dependency
-        //classpath 'com.chaquo.python:gradle:9.1.0'
-    }
-}
+//buildscript {
+//    repositories {
+//        google()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:4.2.2'
+        //classpath "com.chaquo.python:gradle:14.0.2"
+//    }
+//}
 
 plugins {
     id 'com.android.application'
-    //id 'com.chaquo.python'
-    // id 'com.chaquo.python' version '14.0.2'apply false
+    id 'com.chaquo.python'
 }
 
 android {
@@ -34,6 +26,17 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+        python {
+            version "3.11"
+        }
+        python {
+            buildPython "C:/Users/Kasia/AppData/Local/Programs/Python/Python311/python.exe"
+            buildPython "C:/Windows/py.exe", "-3.11"
+        }
     }
 
     buildTypes {
@@ -69,6 +72,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // other dependencies
-    //implementation 'com.chaquo.python:chaquopy:9.4.4'
+    //implementation 'com.chaquo.python:chaquopy:14.0.2'
 
 }
